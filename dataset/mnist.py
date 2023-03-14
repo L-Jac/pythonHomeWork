@@ -112,16 +112,22 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
 
     with open(save_file, 'rb') as f:
         dataset = pickle.load(f)
-
+    # normalize设置是否将输入图像正规化为0.0～1.0的值。
+    # 如果将该参数设置为False，则输入图像的像素会保持原来的0～255。
     if normalize:
         for key in ('train_img', 'test_img'):
             dataset[key] = dataset[key].astype(np.float32)
             dataset[key] /= 255.0
-
+    # one_hot_label设置是否将标签保存为one-hot表示（one-hot representation）。
+    # one-hot表示是仅正确解标签为1，其余皆为0的数组，就像[0,0,1,0,0,0,0,0,0,0]这样。
+    # 当one_hot_label为False时，只是像7、2这样简单保存正确解标签；
+    # 当one_hot_label为True时，标签则保存为one-hot表示。
     if one_hot_label:
         dataset['train_label'] = _change_one_hot_label(dataset['train_label'])
         dataset['test_label'] = _change_one_hot_label(dataset['test_label'])
-
+    # flatten设置是否展开输入图像（变成一维数组）。
+    # 如果将该参数设置为False，则输入图像为1 × 28 × 28的三维数组；
+    # 若设置为True，则输入图像会保存为由784个元素构成的一维数组。
     if not flatten:
         for key in ('train_img', 'test_img'):
             dataset[key] = dataset[key].reshape(-1, 1, 28, 28)

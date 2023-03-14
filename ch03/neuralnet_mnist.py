@@ -1,10 +1,12 @@
 # coding: utf-8
-import sys, os
-sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
+import os
+import sys
 import numpy as np
 import pickle
 from dataset.mnist import load_mnist
 from common.functions import sigmoid, softmax
+
+sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
 
 
 def get_data():
@@ -34,11 +36,29 @@ def predict(network, x):
 
 x, t = get_data()
 network = init_network()
-accuracy_cnt = 0
+accuracy_cnt1 = 0
+accuracy_cnt2 = 0
+
+# TODO 普通推理处理
 for i in range(len(x)):
     y = predict(network, x[i])
-    p= np.argmax(y) # 获取概率最高的元素的索引
+    p = np.argmax(y)  # 获取概率最高的元素的索引
     if p == t[i]:
-        accuracy_cnt += 1
+        accuracy_cnt1 += 1
+    # accuracy_cnt1 += (p == t[i])
 
-print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
+# TODO 批处理
+batch_size = 100  # 批数量
+for i in range(0, len(x), batch_size):
+    x_batch = x[i: i + batch_size]
+    y_batch = predict(network, x_batch)
+    p = np.argmax(y_batch, axis=1)  # y_batch二维数组,axis=1/0按行/列取最大
+    accuracy_cnt2 += np.sum(p == t[i:i + batch_size])
+
+
+print("Accuracy:" + str(float(accuracy_cnt1) / len(x)))
+print("Accuracy:" + str(float(accuracy_cnt2) / len(x)))
+print(x.shape)  # 输入的数据的形状
+print(x[0].shape)
+W1, W2, W3 = network['W1'], network['W2'], network['W3']
+print(W1.shape, W2.shape, W3.shape)  # 各个权重的形状

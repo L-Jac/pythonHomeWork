@@ -154,3 +154,6 @@ def softmax_better(index):
 
 
 print(softmax_better(A3))
+
+# TODO MNIST数据集 test1.py
+# TODO 神经网络的推理处理  ch03/neuralnet_mnist.py

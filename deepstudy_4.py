@@ -1,4 +1,7 @@
 import pickle
+
+import matplotlib.pyplot as plt
+
 from common.functions import sigmoid, softmax
 import numpy as np
 import sys
@@ -120,3 +123,32 @@ def cross_entropy_error3(y, t):
     # y[np.arange(batch_size), t]
     # 对于每一行（即每一个样本），从 y 中选择第 t 列的元素。
     # 也就是说，对于每一个样本，我们都选择其对应标签的预测概率。
+
+
+# TODO 数值微分
+
+# 中心差分求导
+def numerical_diff(f, x):
+    h = 1e-4  # 0.0001
+    return (f(x + h) - f(x - h)) / (2 * h)
+
+
+def function_1(x):
+    return x ** 2 + 0.1 * x
+
+
+# 函数图像 ch04/gradient_1d.py
+x = np.arange(0.0, 4.0, 0.1)
+y11 = function_1(x)
+y22 = numerical_diff(function_1, x)  # 导数图像
+plt.plot(x, y11, label="f(x)")
+plt.plot(x, y22, linestyle=":", label="f(x)'")
+plt.title("f(x) & f(x)'")  # 标题
+plt.legend()
+plt.show()
+
+# 偏导和梯度 ch04/gradient_2d.py
+# 梯度法 ch04/gradient_method.py
+# TODO 学习算法的实现
+#  ch04/train_neuralnet.py,
+#  ch04/two_layer_net.py

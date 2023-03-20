@@ -40,11 +40,11 @@ z = np.array([-1.0, 1.0, 2.0])
 print(sigmoid(z))
 
 
-#
-# n = np.arange(-5.0, 5.0, 0.1)
-# plt.plot(n, sigmoid(n))
-# plt.ylim(-0.1, 1.1)  # 指定y轴的范围
-# plt.show()
+# sigmoid图像
+n = np.arange(-5.0, 5.0, 0.1)
+plt.plot(n, sigmoid(n))
+plt.ylim(-0.1, 1.1)  # 指定y轴的范围
+plt.show()
 
 # TODO sigmoid与阶跃对比
 # x = np.arange(-6, 6, 0.1)  # 以0.1为单位，生成0到6的数据

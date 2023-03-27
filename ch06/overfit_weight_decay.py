@@ -1,13 +1,13 @@
 # coding: utf-8
 import os
 import sys
-
-sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
 import numpy as np
 import matplotlib.pyplot as plt
 from dataset.mnist import load_mnist
 from common.multi_layer_net import MultiLayerNet
 from common.optimizer import SGD
+
+sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
 
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
 
@@ -16,11 +16,13 @@ x_train = x_train[:300]
 t_train = t_train[:300]
 
 # weight decay（权值衰减）的设定 =======================
-#weight_decay_lambda = 0 # 不使用权值衰减的情况
+# weight_decay_lambda = 0 # 不使用权值衰减的情况
 weight_decay_lambda = 0.1
 # ====================================================
 
-network = MultiLayerNet(input_size=784, hidden_size_list=[100, 100, 100, 100, 100, 100], output_size=10,
+network = MultiLayerNet(input_size=784,
+                        hidden_size_list=[100, 100, 100, 100, 100, 100],
+                        output_size=10,
                         weight_decay_lambda=weight_decay_lambda)
 optimizer = SGD(lr=0.01)
 
@@ -54,7 +56,6 @@ for i in range(1000000000):
         epoch_cnt += 1
         if epoch_cnt >= max_epochs:
             break
-
 
 # 3.绘制图形==========
 markers = {'train': 'o', 'test': 's'}

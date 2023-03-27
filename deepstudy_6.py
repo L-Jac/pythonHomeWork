@@ -70,3 +70,15 @@ class AdaGrad:
 #  Batch Norm的思路是调整各层的激活值分布使其拥有适当的广度
 #  common/multi_layer_net_extend.py
 #  ch06/batch_norm_test.py
+
+# TODO 正则化
+#  过拟合后使用权值衰减抑制 ch06/overfit_weight_decay.py
+#  Dropout Dropout是一种在学习的过程中随机删除神经元的方法（抑制过拟合）
+#  ch06/overfit_dropout.py
+
+# TODO 超参数的验证
+#  不能使用测试数据评估超参数的性能，否则超参数的值会对测试数据发生过拟合
+#  用于调整超参数的数据，一般称为验证数据（validation data）。
+#  ch06/hyperparameter_optimization.py
+
+

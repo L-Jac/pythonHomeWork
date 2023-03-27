@@ -65,3 +65,8 @@ class AdaGrad:
 #   当前一层的节点数为n时，He初始值使用标准差为√(2/n)的高斯分布。
 
 # TODO 基于MNIST数据集的权重初始值的比较 ch06/weight_init_compare.py
+
+# TODO Batch Norm
+#  Batch Norm的思路是调整各层的激活值分布使其拥有适当的广度
+#  common/multi_layer_net_extend.py
+#  ch06/batch_norm_test.py

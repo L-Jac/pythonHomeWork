@@ -88,3 +88,6 @@ class Pooling:
         # 转换(3)
         out = out.reshape(N, out_h, out_w, C).transpose(0, 3, 1, 2)
         return out
+
+# TODO 简单CNN的实现
+#  ch07/simple_convnet.py

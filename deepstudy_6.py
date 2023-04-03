@@ -54,6 +54,11 @@ class AdaGrad:
             # 最后一行加上了微小值1e-7。
             # 防止当 self.h[key]中有0时，将0用作除数的情况。
 
+# TODO Adam优化
+#  结合Momentum和AdaGrad的方法
+#  common/optimizer.py中将其实现为了Adam类
+
+
 # TODO Xavier初始值：
 #   与前一层有n个节点连接时，初始值(初始权重)使用标准差为1/√n的分布
 #   这是以线性函数为前提而推导出来的。
@@ -81,4 +86,7 @@ class AdaGrad:
 #  用于调整超参数的数据，一般称为验证数据（validation data）。
 #  ch06/hyperparameter_optimization.py
 
-
+# TODO Dropout
+#  Dropout是一种在学习的过程中随机删除神经元的方法
+#  通过使用Dropout，即便是表现力强的网络，也可以抑制过拟合。
+#  ch06/overfit_dropout.py
